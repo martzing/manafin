@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://manafin.punyapat.org/web'),
+    'url' => env('APP_URL', 'http://manafin-web.punyapat.org/'),
 
     /*
     |--------------------------------------------------------------------------
