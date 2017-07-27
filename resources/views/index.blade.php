@@ -9,36 +9,70 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
-
+    <link rel="stylesheet"href="https://fonts.googleapis.com/css?family=Prompt">
     <title>Manafin</title>
 
     <!-- Bootstrap core CSS -->
     {!! Html::style('css/bootstrap-grid.css') !!}
     {!! Html::style('css/bootstrap.min.css') !!}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 
     <style type="text/css">
-    .footer {
-  background: #f5f5f5;;
-  padding: 10px 0;
-}
-.footer a {
-  color: #70726F;
-  font-size: 20px;
-  padding: 10px;
-  transition: all .5s ease;
-}
-}
-.footer a:hover {
-  color: white;
-}
-      
+      .footer {
+        background: #f5f5f5;;
+        padding: 10px 0;
+      }
+      .footer a {
+        color: #70726F;
+        font-size: 20px;
+        padding: 10px;
+        transition: all .5s ease;
+      }
+      .footer a:hover {
+        color: white;
+      }
+      body {
+        font-family: 'Prompt', serif;
+      }
+      ::-webkit-input-placeholder {
+        text-align: center;
+      }
+      :-moz-placeholder {
+        /* Firefox 18- */
+        text-align: center;
+      }
+      ::-moz-placeholder {
+        /* Firefox 19+ */
+        text-align: center;
+      }
+      :-ms-input-placeholder {
+        text-align: center;
+      }
+      select, input {
+        text-align: center;
+        text-align-last: center;
+      }
+      #contact-form {
+        background-color:#FFFFFF;
+        padding: 5% 5% 5% 5%;
+        border-style: solid;
+        border-color: #336666;
+        margin-top: 20%;
+        text-align: center;
+      }
+      #find_promotion{
+        color:#ffffff;
+        background-color:#62b29e;
+        width:100%;
+      }
+      #find_promotion:hover {
+        opacity:0.7;
+      }
+      #success_message{ display: none;}
+
     </style>
-    
-
- 
- </style>
-
   </head>
 
   <body>
@@ -82,57 +116,139 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
+    <br>
+    <br>
 
-    <div class="container">
-    <br>
-    <br>
-    <br>
-    <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Input</h3>
+    <div style="width:100%;padding:8px;background:url('image/index-background.png');background-repeat: no-repeat;background-size:100% 100%;">
+    <div class="row">
+    <div class="col-lg-4 col-lg-offset-8 col-md-8 col-md-offset-4 col-sm-10 col-sm-offset-2 col-xs-12 col-xs-offset-0">
+      <div id="contact-form">
+  	<div>
+  		<h1>ค้นหาโปรโมชั่นสินเชือกู้บ้าน</h1>
+  		<h4 style="color:#BEBEBE;">บอกความต้องการของคุณมาได้เลย</h4>
+      <h4 style="color:#BEBEBE;">เราจะหาโปรโมชันที่เหมาะกับคุณที่สุด มาให้คุณเอง</h4>
+  	</div>
+            {{ Form::open(array('url'=>'callWebService', 'id'=>'promotion_form')) }}
+            <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                    <select name="property" class="form-control selectpicker">
+                        <option value="" selected="selected">*ประเภทสินทรัพย์</option>
+                        <option value="1">บ้าน</option>
+                        <option value="2">คอนโด</option>
+                    </select>
+                  </div>
             </div>
-            <div class="box-body">
-              <select class="form-control select2">
-                  <option selected="selected">Input1</option>
-                  <option>Alaska</option>
-                  <option disabled="disabled">California (disabled)</option>
-                  <option>Delaware</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option>Washington</option>
-                </select>
-              <select class="form-control select2">
-                  <option selected="selected">Input2</option>
-                  <option>Alaska</option>
-                  <option disabled="disabled">California (disabled)</option>
-                  <option>Delaware</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option>Washington</option>
-                </select>
-              <select class="form-control select2">
-                  <option selected="selected">Input3</option>
-                  <option>Alaska</option>
-                  <option disabled="disabled">California (disabled)</option>
-                  <option>Delaware</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option>Washington</option>
-                </select>
-                <select class="form-control select2">
-                  <option selected="selected">Input3</option>
-                  <option>Alaska</option>
-                  <option disabled="disabled">California (disabled)</option>
-                  <option>Delaware</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option>Washington</option>
-                </select>
-                <br>
-                <button id="submit" type="button" class="btn btn-default center-block">Submit</button>
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
+                <input type="text" class="form-control" placeholder="*ราคาสินทรัพย์ (บาท)" id="property_price" name="property_price">
+              </div>
             </div>
+            <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                    <select name="lend_percent" class="form-control selectpicker">
+                      <option value="" selected="selected">*ต้องการกู้กี่ %</option>
+                      <option value="1">100%</option>
+                      <option value="2">90%</option>
+                      <option value="3">80%</option>
+                      <option value="4">70%</option>
+                    </select>
+                </div>
+          </div>
+          <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                  <select name="year" class="form-control selectpicker">
+                      <option value="" selected="selected">*ต้องการกู้กี่ปี</option>
+                      <option value="1">5 ปี</option>
+                      <option value="2">10 ปี</option>
+                      <option value="3">15 ปี</option>
+                      <option value="4">20 ปี</option>
+                      <option value="5">25 ปี</option>
+                      <option value="6">30 ปี</option>
+                    </select>
+                  </div>
+            </div>
+            <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                    <select name="condition" class="form-control selectpicker">
+                        <option value="" selected="selected">*ประกัน MRTA</option>
+                        <option value="1">รับ</option>
+                        <option value="2">ไม่รับี</option>
+                      </select>
+                    </div>
+              </div>
+            <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                    <select name="career" class="form-control selectpicker">
+                      <option selected="selected">อาชีพ</option>
+                      <option>ข้าราชการ</option>
+                      <option>พนักงานรัฐวิสาหกิจ</option>
+                      <option>พนักงานบริษัท</option>
+                      <option>เจ้าของกิจการ</option>
+                      <option>อาชีพอิสระ</option>
+                      <option>อืนๆ</option>
+                    </select>
+                  </div>
+            </div>
+            <div class="form-group">
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                    <select name="characterize_career" class="form-control selectpicker">
+                      <option selected="selected">ลักษณะอาชีพ</option>
+                      <option>วิศวกร</option>
+                      <option>แพทย์</option>
+                      <option>พยาบาล</option>
+                      <option>เภสัชกร</option>
+                      <option>พนักงานขาย</option>
+                      <option>สถาปนิก</option>
+                      <option>ครู/อาจารย์</option>
+                      <option>ตำรวจ/ทหาร</option>
+                      <option>ทนายความ</option>
+                      <option>ผู้พิพากษา/อัยการ</option>
+                      <option>อืนๆ</option>
+                    </select>
+                  </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
+                  <input type="text" class="form-control" placeholder="เงินเดือน (บาท)" id="salary" name="salary">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
+                  <input type="text" class="form-control" placeholder=" ผ่อนที่อยู่อาศัยเดือนละ (บาท)" id="mortgage" name="mortgage">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
+                  <input type="text" class="form-control" placeholder="ผ่อนรถเดือนละ (บาท)" id="car_installment" name="car_installment">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
+                  <input type="text" class="form-control" placeholder="ผ่อนบัตรเครดิตเดือนละ (บาท)" id="credit_installment" name="credit_installment">
+                </div>
+            </div>
+            <!-- Success message -->
+            <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you shortly.</div>
+            <input type="submit" id="find_promotion" class="btn center-block" value="ค้าหาโปรโมชั่นเลย">
+            {{ Form::close() }}
 
     </div>
+    </div>
+    </div>
+    </div>
+
+    <div class="container">
     <br>
     <br>
             <!-- Service Panels -->
@@ -145,7 +261,7 @@
                 <div class="panel panel-default text-center">
                     <div class="panel-heading">
                         <span class="fa-stack fa-5x">
-                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                              <i style="opacity: 0.7;color:#62b29e;" class="fa fa-circle fa-stack-2x text-success"></i>
                               <i class="fa fa-dollar fa-stack-1x fa-inverse"></i>
                         </span>
                     </div>
@@ -160,7 +276,7 @@
                 <div class="panel panel-default text-center">
                     <div class="panel-heading">
                         <span class="fa-stack fa-5x">
-                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                              <i style="opacity: 0.7;color:#62b29e;" class="fa fa-circle fa-stack-2x text-success"></i>
                               <i class="fa fa-bar-chart fa-stack-1x fa-inverse"></i>
                         </span>
                     </div>
@@ -175,7 +291,7 @@
                 <div class="panel panel-default text-center">
                     <div class="panel-heading">
                         <span class="fa-stack fa-5x">
-                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                              <i style="opacity: 0.7;color:#62b29e;" class="fa fa-circle fa-stack-2x text-success"></i>
                               <i class="fa fa-pie-chart fa-stack-1x fa-inverse"></i>
                         </span>
                     </div>
@@ -190,7 +306,7 @@
                 <div class="panel panel-default text-center">
                     <div class="panel-heading">
                         <span class="fa-stack fa-5x">
-                              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                              <i style="opacity: 0.7;color:#62b29e;" class="fa fa-circle fa-stack-2x text-success"></i>
                               <i class="fa fa-database fa-stack-1x fa-inverse"></i>
                         </span>
                     </div>
@@ -202,8 +318,18 @@
                 </div>
             </div>
         </div>
+        <br>
+        <h4 class=media-heading>Manafin คืออะไร?</h4>
+        <div class="row">
+        <div class="col-lg-6 col-md-9 col-sm-12 center-block">
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe src="https://www.youtube.com/embed/4BkUUDPF-Ho?list=RDMM4BkUUDPF-Ho" frameborder="0" allowfullscreen></iframe>
+        </div>
+        </div>
+        </div>
 
-       
+
+
        <br>
        <br>
         <h4 class=media-heading>Topic 1</h4> <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
@@ -231,15 +357,83 @@
 
     {!! Html::script('js/bootstrap.min.js') !!}
     {!! Html::script('jQuery/jquery-2.2.3.min.js') !!}
-    {!! Html::script('js/flot/jquery.flot.min.js') !!}
-    {!! Html::script('js/flot/jquery.flot.categories.min.js') !!}
-    {!! Html::script('js/flot/jquery.flot.resize.min.js') !!}
-    {!! Html::script('js/flot/jquery.flot.pie.min.js') !!}
-<script>
-$("#submit").click(function(){
-    window.location.href = "{{ url('/showdata') }}";
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js"></script>
+
+    <script>
+
+    $(document).ready(function() {
+    $('#promotion_form').bootstrapValidator({
+        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+          property: {
+              validators: {
+                  notEmpty: {
+                      message: 'กรุณาเลือกประเภทสินทรัพย์'
+                  }
+              }
+          },
+            property_price: {
+                validators: {
+                    // stringLength: {
+                    //    min: 4,
+                  //  },
+                    notEmpty: {
+                        message: 'กรุณากรอกราคาราสินทรัพย์ที่ต้องการกู้'
+                    }
+                }
+            },
+            lend_percent: {
+                validators: {
+                    notEmpty: {
+                        message: 'กรุณาเลือกเปอเซนตในการกู้์'
+                    }
+                }
+            },
+            year: {
+                validators: {
+                    notEmpty: {
+                        message: 'กรุณาเลือกจำนวนปีที่ต้องการกู้'
+                    }
+                }
+            },
+            condition: {
+                validators: {
+                    notEmpty: {
+                        message: 'กรุณาระบุการรับการคุ้มครองประกัน MRTA'
+                    }
+                }
+            },
+
+            }
+        }).on('success.form.bv', function(e) {
+            $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+                $('#promotion_form').data('bootstrapValidator').resetForm();
+
+            // Prevent form submission
+            e.preventDefault();
+
+            // Get the form instance
+            var $form = $(e.target);
+
+            // Get the BootstrapValidator instance
+            var bv = $form.data('bootstrapValidator');
+
+            // Use Ajax to submit form data
+            $.post($form.attr('action'), $form.serialize(), function(result) {
+                console.log(result);
+            }, 'json');
+        });
 });
-</script>
+
+
+
+    </script>
 
   </body>
 </html>

@@ -17,6 +17,9 @@ Route::get('/', function () {
 
 Route::get('Manafin', 'ManafinController@index');
 Route::get('showdata', 'ManafinController@showData');
+Route::get('testChart', 'ManafinController@testChart');
+Route::post('callWebService', 'ManafinCallWebService@callDataFromWebService');
+
 
 /*Route::get('/', function () {
     return view('welcome');

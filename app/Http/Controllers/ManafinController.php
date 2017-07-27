@@ -19,4 +19,8 @@ class ManafinController extends Controller
 
     	return view('showdata');
     }
+    public function testChart(){
+
+    	return view('testChart');
+    }
 }
