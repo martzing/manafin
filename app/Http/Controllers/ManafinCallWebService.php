@@ -49,9 +49,9 @@ class ManafinCallWebService extends Controller
 
     public function setPropertyString(propertyValue){
       if(propertyValue == 1){
-        return 'บ้าน'
+        return 'บ้าน';
       }else if(propertyValue == 2){
-        return 'คอนโด'
+        return 'คอนโด';
       }
     }
 
