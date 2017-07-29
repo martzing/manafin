@@ -124,14 +124,14 @@
     <div class="col-lg-4 col-lg-offset-8 col-md-8 col-md-offset-4 col-sm-10 col-sm-offset-2 col-xs-12 col-xs-offset-0">
       <div id="contact-form">
   	<div>
-  		<h1>ค้นหาโปรโมชั่นสินเชือกู้บ้าน</h1>
+  		<h1>ค้นหาโปรโมชั่นสินเชื่อกู้บ้าน</h1>
   		<h4 style="color:#BEBEBE;">บอกความต้องการของคุณมาได้เลย</h4>
       <h4 style="color:#BEBEBE;">เราจะหาโปรโมชันที่เหมาะกับคุณที่สุด มาให้คุณเอง</h4>
   	</div>
             {{ Form::open(array('url'=>'callWebService', 'id'=>'promotion_form')) }}
             <div class="form-group">
                   <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                    <span class="input-group-addon"><i class="fa fa-list"></i></span>
                     <select name="property" class="form-control selectpicker">
                         <option value="" selected="selected">*ประเภทสินทรัพย์</option>
                         <option value="1">บ้าน</option>
@@ -141,13 +141,13 @@
             </div>
             <div class="form-group">
               <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
+                <span class="input-group-addon"><i style="font-size:20px" class="fa fa-btc"></i></i></span>
                 <input type="text" class="form-control" placeholder="*ราคาสินทรัพย์ (บาท)" id="property_price" name="property_price">
               </div>
             </div>
             <div class="form-group">
                   <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                    <span class="input-group-addon"><i class="fa fa-list"></i></span>
                     <select name="lend_percent" class="form-control selectpicker">
                       <option value="" selected="selected">*ต้องการกู้กี่ %</option>
                       <option value="1">100%</option>
@@ -159,7 +159,7 @@
           </div>
           <div class="form-group">
                 <div class="input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                  <span class="input-group-addon"><i class="fa fa-list"></i></span>
                   <select name="year" class="form-control selectpicker">
                       <option value="" selected="selected">*ต้องการกู้กี่ปี</option>
                       <option value="1">5 ปี</option>
@@ -173,17 +173,17 @@
             </div>
             <div class="form-group">
                   <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                    <span class="input-group-addon"><i class="fa fa-list"></i></span>
                     <select name="condition" class="form-control selectpicker">
                         <option value="" selected="selected">*ประกัน MRTA</option>
                         <option value="1">รับ</option>
-                        <option value="2">ไม่รับี</option>
+                        <option value="2">ไม่รับ</option>
                       </select>
                     </div>
               </div>
             <div class="form-group">
                   <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                    <span class="input-group-addon"><i class="fa fa-list"></i></span>
                     <select name="career" class="form-control selectpicker">
                       <option selected="selected">อาชีพ</option>
                       <option>ข้าราชการ</option>
@@ -197,7 +197,7 @@
             </div>
             <div class="form-group">
                   <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                    <span class="input-group-addon"><i class="fa fa-list"></i></span>
                     <select name="characterize_career" class="form-control selectpicker">
                       <option selected="selected">ลักษณะอาชีพ</option>
                       <option>วิศวกร</option>
@@ -216,25 +216,25 @@
             </div>
             <div class="form-group">
                 <div class="input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
+                  <span class="input-group-addon"><i style="font-size:20px" class="fa fa-btc"></i></span>
                   <input type="text" class="form-control" placeholder="เงินเดือน (บาท)" id="salary" name="salary">
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
+                  <span class="input-group-addon"><i style="font-size:20px" class="fa fa-btc"></i></span>
                   <input type="text" class="form-control" placeholder=" ผ่อนที่อยู่อาศัยเดือนละ (บาท)" id="mortgage" name="mortgage">
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
+                  <span class="input-group-addon"><i style="font-size:20px" class="fa fa-btc"></i></span>
                   <input type="text" class="form-control" placeholder="ผ่อนรถเดือนละ (บาท)" id="car_installment" name="car_installment">
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
+                  <span class="input-group-addon"><i style="font-size:20px" class="fa fa-btc"></i></span>
                   <input type="text" class="form-control" placeholder="ผ่อนบัตรเครดิตเดือนละ (บาท)" id="credit_installment" name="credit_installment">
                 </div>
             </div>

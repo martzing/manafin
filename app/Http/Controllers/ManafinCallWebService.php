@@ -10,35 +10,49 @@ class ManafinCallWebService extends Controller
     //
     public function callDataFromWebService(Request $req){
 
-      print($req->input('property'));
-      $property = (int)$req->input('property');
-      print('<br>');
-      print($req->input('property_price'));
-      $propertyPrice = (float)$req->input('property_price');
-      print('<br>');
-      print($req->input('lend_percent'));
-      $lendPercent = (int)$req->input('lend_percent');
-      print('<br>');
-      print($req->input('year'));
-      $year = (int)$req->input('year');
-      print('<br>');
-      print($req->input('condition'));
-      $condition = (int)$req->input('condition');
-      print('<br>');
+      $userInformationIntList = array();
+      $userInformationStringList = array();
+      if(!empty($req->input('property'))){
+        $userInformation['property'] = (int)$req->input('property');
+      }
+      if(!empty($req->input('property_price'))){
+        $userInformation['total_amount'] = (float)$req->input('property_price');
+      }
+      if(!empty($req->input('lend_percent'))){
+        $userInformation['lend_amount'] = (int)$req->input('lend_percent');
+      }
+      if(!empty($req->input('year'))){
+        $userInformation['year'] = (int)$req->input('year');
+      }
+      if(!empty($req->input('condition'))){
+        $userInformation['condition'] = (int)$req->input('condition');
+      }
+      $userInformation['career'] = 7;
+      $userInformation['bank'] = 2;
 
-      //dd($req->all());
+      //print_r($userInformation);
 
-      $manafinClient = new Client(['base_uri' => 'https://manafin.punyapat.org',]);
-      $returnData = $manafinClient->request('POST', 'service/promotions', ['form_params' => ['total_amount' => $propertyPrice,
-                                                                                  'lend_amount'  => $lendPercent,
-                                                                                  'year'         => $year,
-                                                                                  'property'     => $property,
-                                                                                  'career'       => 7,
-                                                                                  'bank'         => 2,
-                                                                                  'condition'    => $condition]]);
-      //$returnData = $manafinClient->request('POST', 'data/reference');
+      $resultData = $this->callAPI('POST', 'https://manafin.punyapat.org', 'service/promotions', $userInformation);
 
-      $data = json_decode($returnData->getBody());
-      dd($data);
+
+      return view('showdata')->with('resultData', $resultData);
+
     }
+
+    public function callAPI($method, $baesUrl, $uri, $data = null){
+
+      $client = new Client(['base_uri' => $baesUrl]);
+      $returnData = $client->request($method, $uri, ['form_params' => $data]);
+      return json_decode($returnData->getBody());
+
+    }
+
+    public function setPropertyString(propertyValue){
+      if(propertyValue == 1){
+        return 'บ้าน'
+      }else if(propertyValue == 2){
+        return 'คอนโด'
+      }
+    }
+
 }

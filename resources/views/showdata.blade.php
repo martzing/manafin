@@ -15,29 +15,30 @@
     <!-- Bootstrap core CSS -->
     {!! Html::style('css/bootstrap-grid.css') !!}
     {!! Html::style('css/bootstrap.min.css') !!}
+    {!! Html::script('ChartJs/dist/Chart.bundle.js') !!}
+    <link rel="stylesheet"href="https://fonts.googleapis.com/css?family=Prompt">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style type="text/css">
-    .footer {
-  background: #f5f5f5;;
-  padding: 10px 0;
-}
-.footer a {
-  color: #70726F;
-  font-size: 20px;
-  padding: 10px;
-  transition: all .5s ease;
-}
-}
-.footer a:hover {
-  color: white;
-}
-      
-    </style>
-    
-
- 
- </style>
+      .footer {
+        background: #f5f5f5;;
+        padding: 10px 0;
+      }
+      .footer a {
+        color: #70726F;
+        font-size: 20px;
+        padding: 10px;
+        transition: all .5s ease;
+      }
+      .footer a:hover {
+        color: white;
+      }
+      canvas {
+          -moz-user-select: none;
+          -webkit-user-select: none;
+          -ms-user-select: none;
+      }
+  </style>
 
   </head>
 
@@ -84,186 +85,94 @@
     </nav>
 
     <div class="container">
-    <br>
-    <br>
-    <br>
-    <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Input From User</h3>
-            </div>
-            <div class="box-body">
-              <select class="form-control select2">
-                  <option selected="selected">Input1</option>
-                  <option>Alaska</option>
-                  <option disabled="disabled">California (disabled)</option>
-                  <option>Delaware</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option>Washington</option>
-                </select>
-              <select class="form-control select2">
-                  <option selected="selected">Input2</option>
-                  <option>Alaska</option>
-                  <option disabled="disabled">California (disabled)</option>
-                  <option>Delaware</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option>Washington</option>
-                </select>
-              <select class="form-control select2">
-                  <option selected="selected">Input3</option>
-                  <option>Alaska</option>
-                  <option disabled="disabled">California (disabled)</option>
-                  <option>Delaware</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option>Washington</option>
-                </select>
-                <select class="form-control select2">
-                  <option selected="selected">Input3</option>
-                  <option>Alaska</option>
-                  <option disabled="disabled">California (disabled)</option>
-                  <option>Delaware</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option>Washington</option>
-                </select>
-                <br>
-                <p>MRR 7.2%</p>
-
-            </div>
-
-    </div>
-    <br>
-    <br>
-
-    <!-- Bar chart -->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Result</h3>
-            </div>
-            <div class="box-body">
-              <div id="bar-chart" style="height: 300px;"></div>
-            </div>
-            <!-- /.box-body-->
-          </div>
-          <!-- /.box -->
-       
-       <br>
-       <br>
-        <h4 class=media-heading>Suggest 1</h4> <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-       <br>
-    <br>
-        <h4 class=media-heading>Suggest 2</h4> <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-
-        <br>
-    <br>
-
-        <h4 class=media-heading>Suggest 3</h4> <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-
-
+      <br><br><br><br><br><br><br>
+      <div>
+        <canvas id="myChart" height="400" width="600"></canvas>
+      </div>
     </div> <!-- /container -->
 
     <footer class="footer">
-  <div class="container text-center">
-    <a href="#"><i class="fa fa-facebook"></i></a>
-    <a href="#"><i class="fa fa-twitter"></i></a>
-    <a href="#"><i class="fa fa-linkedin"></i></a>
-    <a href="#"><i class="fa fa-google-plus"></i></a>
-    <a href="#"><i class="fa fa-skype"></i></a>
-  </div>
-</footer>
+      <div class="container text-center">
+        <a href="#"><i class="fa fa-facebook"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-linkedin"></i></a>
+        <a href="#"><i class="fa fa-google-plus"></i></a>
+        <a href="#"><i class="fa fa-skype"></i></a>
+      </div>
+    </footer>
 
-    {!! Html::script('js/bootstrap.min.js') !!}
+
+
+
     {!! Html::script('jQuery/jquery-2.2.3.min.js') !!}
-    {!! Html::script('js/flot/jquery.flot.min.js') !!}
-    {!! Html::script('js/flot/jquery.flot.categories.min.js') !!}
-    {!! Html::script('js/flot/jquery.flot.resize.min.js') !!}
-    {!! Html::script('js/flot/jquery.flot.pie.min.js') !!}
+    {!! Html::script('js/bootstrap.min.js') !!}
 <script>
-  $(function () {
-    /*
-     * Flot Interactive Chart
-     * -----------------------
-     */
-    // We use an inline data source in the example, usually data would
-    // be fetched from a server
+  var resultDataJson = {!! json_encode($resultData) !!};
+  //console.log(resultDataJson);
+  var resultData = resultDataJson['data'];
+  // sort data
+  resultData.sort(function(a, b) {
+    return a.avg_payment.month3 < b.avg_payment.month3;
+  });
+  //resultData.sort();
+  console.log(resultData);
+  var bankNameList = [];
+  var averagePaymentList = [];
+  var backgroundColorList = [];
 
-
-    var data = [], totalPoints = 100;
-
-    function getRandomData() {
-
-      if (data.length > 0)
-        data = data.slice(1);
-
-      // Do a random walk
-      while (data.length < totalPoints) {
-
-        var prev = data.length > 0 ? data[data.length - 1] : 50,
-            y = prev + Math.random() * 10 - 5;
-
-        if (y < 0) {
-          y = 0;
-        } else if (y > 100) {
-          y = 100;
-        }
-
-        data.push(y);
-      }
-
-      // Zip the generated y values with the x values
-      var res = [];
-      for (var i = 0; i < data.length; ++i) {
-        res.push([i, data[i]]);
-      }
-
-      return res;
-    }
-
-    
-
-    /*
-     * BAR CHART
-     * ---------
-     */
-
-    var bar_data = {
-      data: [["January", 10], ["February", 8], ["March", 4], ["April", 13], ["May", 17], ["June", 9]],
-      color: "#3c8dbc"
-    };
-    $.plot("#bar-chart", [bar_data], {
-      grid: {
-        borderWidth: 1,
-        borderColor: "#f3f3f3",
-        tickColor: "#f3f3f3"
-      },
-      series: {
-        bars: {
-          show: true,
-          barWidth: 0.5,
-          align: "center"
-        }
-      },
-      xaxis: {
-        mode: "categories",
-        tickLength: 0
-      }
-    });
-    /* END BAR CHART */
-
+  // set data for draw chart
+  $.each( resultData, function( key, value ) {
+  bankNameList.push(value.bank_name);
+  averagePaymentList.push(parseInt(value.avg_payment.month3*100000));
+  backgroundColorList.push(getBackgroundColorByBankName(value.bank_name));
   });
 
-  /*
-   * Custom Label formatter
-   * ----------------------
-   */
-  function labelFormatter(label, series) {
-    return '<div style="font-size:13px; text-align:center; padding:2px; color: #fff; font-weight: 600;">'
-        + label
-        + "<br>"
-        + Math.round(series.percent) + "%</div>";
-  }
+
+  // draw bar chart
+  var ctx = document.getElementById("myChart");
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+    labels: bankNameList,
+    datasets: [{
+    label: 'โปรโมชั่น',
+    data: averagePaymentList,
+    backgroundColor: backgroundColorList
+              }]
+          },
+    options:{
+      //onClick: function(e){},
+      scales: {
+       yAxes: [{
+         scaleLabel: {
+           display: true,
+           labelString: 'ยอดผ่อนต่อเดือน ([บาท])'
+           //ticks: {
+           //        beginAtZero:true
+           }
+       }]
+   },
+   legend:{
+      display:true
+   }}});
+
+   function getBackgroundColorByBankName(bankName){
+     // this function return rgba string
+     var backgroundColorJson = {'ธนาคารออมสิน':'rgba(235, 12, 141, 1)',
+                                'ธนาคารกรุงศรีอยุธยา':'rgba(249, 195, 62, 1)',
+                                'ธนาคารเกียรตินาคิน':'rgba(0, 155, 201, 1)',
+                                'ธนาคารยูโอบี':'rgba(0, 55, 123, 1)',
+                                'ธนาคารแลนด์แอนด์เฮ้าส์':'rgba(109, 110, 112, 1)',
+                                'ธนาคารอาคารสงเคราะห์':'rgba(245, 130, 32, 1)',
+                                'ธนาคารกสิกรไทย':'rgba(51, 168, 80, 1)',
+                                'ธนาคารทหารไทย':'rgba(18, 80, 155, 1)',
+                                'ธนาคารไทยพาณิชย์':'rgba(81, 50, 130, 1)',
+                                'ธนาคารธนชาต':'rgba(243, 126, 49, 1)',
+                                'ธนาคารกรุงไทย':'rgba(91, 186, 232, 1)',
+                                'ธนาคารกรุงเทพ':'rgba(0, 39, 129, 1)',
+                                'ธนาคารซีไอเอ็มบีไทย':'rgba(124, 2, 27, 1)'};
+    return backgroundColorJson[bankName];
+   }
 </script>
-  </body>
+</body>
 </html>
