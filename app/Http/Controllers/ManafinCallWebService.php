@@ -13,20 +13,19 @@ class ManafinCallWebService extends Controller
       $userInformationIntList = array();
       $userInformationStringList = array();
       if(!empty($req->input('property'))){
-        $userInformation['property'] = (int)$req->input('property');
+        $userInformation['property'] = intval($req->input('property'));
       }
       if(!empty($req->input('property_price'))){
-        $userInformation['total_amount'] = (float)$req->input('property_price');
+        $userInformation['total_amount'] = floatval($req->input('property_price'));
       }
       if(!empty($req->input('lend_percent'))){
-        $userInformation['lend_amount'] = (int)$req->input('lend_percent');
-        $userInformation['lend_amount'] = $this->calaulateLendAmount((int)$req->input('lend_percent'), (float)$req->input('property_price'));
+        $userInformation['lend_amount'] = $this->calaulateLendAmount(intval($req->input('lend_percent')), floatval($req->input('property_price')));
       }
       if(!empty($req->input('year'))){
-        $userInformation['year'] = (int)$req->input('year');
+        $userInformation['year'] = intval($req->input('year'));
       }
       if(!empty($req->input('condition'))){
-        $userInformation['condition'] = (int)$req->input('condition');
+        $userInformation['condition'] = intval($req->input('condition'));
       }
 
       //print_r($userInformation);
