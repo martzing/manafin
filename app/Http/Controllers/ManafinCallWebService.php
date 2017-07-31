@@ -53,7 +53,7 @@ class ManafinCallWebService extends Controller
       }
     }
 
-    public function calaulateLendAmount(int $percentValue, float $propertyPrice){
+    public function calaulateLendAmount($percentValue, $propertyPrice){
       if($percentValue == 1){
         return ($propertyPrice*1);
       }elseif($percentValue == 2){
