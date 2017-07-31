@@ -148,7 +148,7 @@
             <div class="form-group">
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-list"></i></span>
-                    <select name="lend_percent" class="form-control selectpicker">
+                    <select name="lend_percent" id="lend_percent" class="form-control selectpicker">
                       <option value="" selected="selected">*ต้องการกู้กี่ %</option>
                       <option value="1">100%</option>
                       <option value="2">90%</option>
@@ -162,12 +162,12 @@
                   <span class="input-group-addon"><i class="fa fa-list"></i></span>
                   <select name="year" class="form-control selectpicker">
                       <option value="" selected="selected">*ต้องการกู้กี่ปี</option>
-                      <option value="1">5 ปี</option>
-                      <option value="2">10 ปี</option>
-                      <option value="3">15 ปี</option>
-                      <option value="4">20 ปี</option>
-                      <option value="5">25 ปี</option>
-                      <option value="6">30 ปี</option>
+                      <option value="5">5 ปี</option>
+                      <option value="10">10 ปี</option>
+                      <option value="15">15 ปี</option>
+                      <option value="20">20 ปี</option>
+                      <option value="25">25 ปี</option>
+                      <option value="30">30 ปี</option>
                     </select>
                   </div>
             </div>
@@ -238,8 +238,6 @@
                   <input type="text" class="form-control" placeholder="ผ่อนบัตรเครดิตเดือนละ (บาท)" id="credit_installment" name="credit_installment">
                 </div>
             </div>
-            <!-- Success message -->
-            <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you shortly.</div>
             <input type="submit" id="find_promotion" class="btn center-block" value="ค้าหาโปรโมชั่นเลย">
             {{ Form::close() }}
 
@@ -363,6 +361,34 @@
     <script>
 
     $(document).ready(function() {
+
+      // set text value in lend_percent option on page refresh
+      var oneHundredPercent = (parseInt($("#property_price").val())*1).toString();
+      var ninetyPercent = (parseInt($("#property_price").val())*0.9).toString();
+      var eightyPercent = (parseInt($("#property_price").val())*0.8).toString();
+      var seventyPercent = (parseInt($("#property_price").val())*0.7).toString();
+
+      $("#lend_percent option[value='1']").text('100% '+'( '+oneHundredPercent+' )');
+      $("#lend_percent option[value='2']").text('90% '+'( '+ninetyPercent+' )');
+      $("#lend_percent option[value='3']").text('80% '+'( '+eightyPercent+' )');
+      $("#lend_percent option[value='4']").text('70% '+'( '+seventyPercent+' )');
+
+      // set text value in lend_percent option on input change
+      $("#property_price").change(function() {
+        var oneHundredPercent = (parseInt($("#property_price").val())*1).toString();
+        var ninetyPercent = (parseInt($("#property_price").val())*0.9).toString();
+        var eightyPercent = (parseInt($("#property_price").val())*0.8).toString();
+        var seventyPercent = (parseInt($("#property_price").val())*0.7).toString();
+
+        $("#lend_percent option[value='1']").text('100% '+'( '+oneHundredPercent+' )');
+        $("#lend_percent option[value='2']").text('90% '+'( '+ninetyPercent+' )');
+        $("#lend_percent option[value='3']").text('80% '+'( '+eightyPercent+' )');
+        $("#lend_percent option[value='4']").text('70% '+'( '+seventyPercent+' )');
+      });
+
+
+
+      // validation input data
     $('#promotion_form').bootstrapValidator({
         // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
         feedbackIcons: {
@@ -383,6 +409,9 @@
                     // stringLength: {
                     //    min: 4,
                   //  },
+                    integer: {
+                        message: 'กรุณากรอกเฉพาะตัวเลข'
+                    },
                     notEmpty: {
                         message: 'กรุณากรอกราคาราสินทรัพย์ที่ต้องการกู้'
                     }
@@ -411,8 +440,9 @@
             },
 
             }
-        }).on('success.form.bv', function(e) {
-            $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+        });
+        /*.on('success.form.bv', function(e) {
+            // Do something ...
                 $('#promotion_form').data('bootstrapValidator').resetForm();
 
             // Prevent form submission
@@ -428,7 +458,9 @@
             $.post($form.attr('action'), $form.serialize(), function(result) {
                 console.log(result);
             }, 'json');
-        });
+        });*/
+
+      //end validation input data
 });
 
 

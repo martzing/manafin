@@ -120,12 +120,34 @@
   var averagePaymentList = [];
   var backgroundColorList = [];
 
+  function sortJsonData(a,b) {
+  if (a.avg_payment.month3 < b.avg_payment.month3)
+    return -1;
+  if (a.avg_payment.month3 > b.avg_payment.month3)
+    return 1;
+  return 0;
+}
+
+resultData.sort(sortJsonData);
+
+var dataLength = 0;
+if(resultData.length>=10){
+    dataLength = 10;
+}else{
+    dataLength = resultData.length;
+}
+
   // set data for draw chart
-  $.each( resultData, function( key, value ) {
-  bankNameList.push(value.bank_name);
-  averagePaymentList.push(parseInt(value.avg_payment.month3*100000));
-  backgroundColorList.push(getBackgroundColorByBankName(value.bank_name));
-  });
+  //$.each( resultData, function( key, value ) {
+  for( var i = 0; i<dataLength; i++){
+    bankNameList.push(resultData[i].bank_name);
+    averagePaymentList.push(parseInt(resultData[i].avg_payment.month3));
+    backgroundColorList.push(getBackgroundColorByBankName(resultData[i].bank_name));
+    //bankNameList.push(value.bank_name);
+    //averagePaymentList.push(parseInt(value.avg_payment.month3));
+  //  backgroundColorList.push(getBackgroundColorByBankName(value.bank_name));
+  }
+  //});
 
 
   // draw bar chart
@@ -135,7 +157,7 @@
     data: {
     labels: bankNameList,
     datasets: [{
-    label: 'โปรโมชั่น',
+    //label: 'โปรโมชั่น',
     data: averagePaymentList,
     backgroundColor: backgroundColorList
               }]
@@ -146,14 +168,14 @@
        yAxes: [{
          scaleLabel: {
            display: true,
-           labelString: 'ยอดผ่อนต่อเดือน ([บาท])'
+           labelString: 'ยอดผ่อนต่อสามเดือน ([บาท])'
            //ticks: {
            //        beginAtZero:true
            }
        }]
    },
    legend:{
-      display:true
+      display:false
    }}});
 
    function getBackgroundColorByBankName(bankName){
