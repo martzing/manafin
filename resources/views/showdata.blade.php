@@ -19,6 +19,9 @@
     <link rel="stylesheet"href="https://fonts.googleapis.com/css?family=Prompt">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    {!! Html::script('jQuery/jquery-3.2.1.js') !!}
+    {!! Html::script('js/bootstrap.min.js') !!}
+
     <style type="text/css">
       .footer {
         background: #f5f5f5;;
@@ -89,6 +92,14 @@
       <div>
         <canvas id="myChart" height="400" width="600"></canvas>
       </div>
+      <select id="installment" class="form-control selectpicker">
+          <option value="0" selected="selected">ยอดผ่อนต่อเดือน3เดือนแรก</option>
+          <option value="1">ยอดผ่อนต่อเดือน6เดือนแรก</option>
+          <option value="2">ยอดผ่อนต่อเดือน1ปีแรก</option>
+          <option value="3">ยอดผ่อนต่อเดือน2ปีแรก</option>
+          <option value="4">ยอดผ่อนต่อเดือน3ปีแรก</option>
+          <option value="5">ยอดผ่อนต่อเดือนตลอดสัญญา</option>
+      </select>
     </div> <!-- /container -->
 
     <footer class="footer">
@@ -101,65 +112,36 @@
       </div>
     </footer>
 
-
-
-
-    {!! Html::script('jQuery/jquery-2.2.3.min.js') !!}
-    {!! Html::script('js/bootstrap.min.js') !!}
 <script>
   var resultDataJson = {!! json_encode($resultData) !!};
-  //console.log(resultDataJson);
   var resultData = resultDataJson['data'];
+
+  //console.log(resultData);
   // sort data
-  resultData.sort(function(a, b) {
-    return a.avg_payment.month3 < b.avg_payment.month3;
-  });
-  //resultData.sort();
+  resultData = bubbleSortJsonData(resultData, 'month3');
   console.log(resultData);
-  var bankNameList = [];
-  var averagePaymentList = [];
-  var backgroundColorList = [];
 
-  function sortJsonData(a,b) {
-  if (a.avg_payment.month3 < b.avg_payment.month3)
-    return -1;
-  if (a.avg_payment.month3 > b.avg_payment.month3)
-    return 1;
-  return 0;
-}
-
-resultData.sort(sortJsonData);
-
-var dataLength = 0;
-if(resultData.length>=10){
+  var dataLength = 0;
+  if(resultData.length>=10){
     dataLength = 10;
-}else{
+  }else{
     dataLength = resultData.length;
-}
-
-  // set data for draw chart
-  //$.each( resultData, function( key, value ) {
-  for( var i = 0; i<dataLength; i++){
-    bankNameList.push(resultData[i].bank_name);
-    averagePaymentList.push(parseInt(resultData[i].avg_payment.month3));
-    backgroundColorList.push(getBackgroundColorByBankName(resultData[i].bank_name));
-    //bankNameList.push(value.bank_name);
-    //averagePaymentList.push(parseInt(value.avg_payment.month3));
-  //  backgroundColorList.push(getBackgroundColorByBankName(value.bank_name));
   }
-  //});
 
+  // set data to draw
+  var dataSetJson = setDataToDraw(resultData, 'month3', dataLength);
+  //console.log(dataSetJson);
 
   // draw bar chart
   var ctx = document.getElementById("myChart");
   var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-    labels: bankNameList,
+    labels: dataSetJson.labelList,
     datasets: [{
-    //label: 'โปรโมชั่น',
-    data: averagePaymentList,
-    backgroundColor: backgroundColorList
+    label: 'โปรโมชั่น',
+    data: dataSetJson.dataList,
+    backgroundColor: dataSetJson.backgroundColorList
               }]
           },
     options:{
@@ -168,15 +150,81 @@ if(resultData.length>=10){
        yAxes: [{
          scaleLabel: {
            display: true,
-           labelString: 'ยอดผ่อนต่อสามเดือน ([บาท])'
-           //ticks: {
-           //        beginAtZero:true
+           labelString: 'ยอดผ่อนต่อเดือน (บาท)'
+         },
+         ticks: {
+                   beginAtZero:true
            }
        }]
    },
    legend:{
-      display:false
+      display:true
    }}});
+
+
+   $("#installment").change(function(){
+
+    if($("#installment").val() == '0'){
+      var sortBy = 'month3';
+      var label = 'ยอดผ่อนต่อเดือน3เดือนแรก'
+    }else if($("#installment").val() == '1'){
+      var sortBy = 'month6';
+      var label = 'ยอดผ่อนต่อเดือน6เดือนแรก'
+    }else if($("#installment").val() == '2'){
+      var sortBy = 'month12';
+      var label = 'ยอดผ่อนต่อเดือน1ปีแรก'
+    }else if($("#installment").val() == '3'){
+      var sortBy = 'month24';
+      var label = 'ยอดผ่อนต่อเดือน2ปีแรก'
+    }else if($("#installment").val() == '4'){
+      var sortBy = 'month36';
+      var label = 'ยอดผ่อนต่อเดือน3ปีแรก'
+    }else if($("#installment").val() == '5'){
+      var sortBy = 'all';
+      var label = 'ยอดผ่อนต่อเดือนตลอดสัญญา'
+    }
+    resultData = bubbleSortJsonData(resultData, sortBy);
+    dataSetJson = setDataToDraw(resultData, sortBy, dataLength);
+    reDrawChart(myChart, dataSetJson.labelList, dataSetJson.dataList, dataSetJson.backgroundColorList, label);
+   });
+
+
+   function bubbleSortJsonData(data, sortBy){
+       for (var i = 0; i < data.length; i++) {
+         for(var j=0; j < data.length - 1; j++){
+           if (data[j].avg_payment[sortBy] > data[j + 1].avg_payment[sortBy]) {
+             var a = data[j];
+             var b = data[j + 1];
+            data[j] = b;
+        data[j + 1] = a;
+          }
+        }
+      }
+  return data;
+}
+
+
+  function setDataToDraw(resultData, sortBy, dataLength){
+    var bankNameList = [];
+    var averagePaymentList = [];
+    var backgroundColorList = [];
+    //var dataLength = 0;
+
+    for( var i = 0; i<dataLength; i++){
+      bankNameList.push(resultData[i].bank_name);
+      averagePaymentList.push(parseInt(resultData[i].avg_payment[sortBy]));
+      backgroundColorList.push(getBackgroundColorByBankName(resultData[i].bank_name));
+    }
+    return { 'labelList':bankNameList, 'dataList':averagePaymentList, 'backgroundColorList':backgroundColorList };
+  }
+
+   function reDrawChart(chart, newLabelList, newData, newBackgroundColor, newLabel) {
+    chart.data.labels = newLabelList;
+    chart.data.datasets[0].data = newData;
+    chart.data.datasets[0].backgroundColor = newBackgroundColor;
+    chart.data.datasets[0].label = newLabel;
+    chart.update();
+  }
 
    function getBackgroundColorByBankName(bankName){
      // this function return rgba string

@@ -17,7 +17,12 @@
     {!! Html::style('css/bootstrap.min.css') !!}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    {!! Html::script('jQuery/jquery-3.2.1.js') !!}
+    {!! Html::script('js/bootstrap.min.js') !!}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js"></script>
 
     <style type="text/css">
       .footer {
@@ -116,8 +121,6 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-    <br>
-    <br>
 
     <div style="width:100%;padding:8px;background:url('image/index-background.png');background-repeat: no-repeat;background-size:100% 100%;">
     <div class="row">
@@ -181,63 +184,78 @@
                       </select>
                     </div>
               </div>
-            <div class="form-group">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-list"></i></span>
-                    <select name="career" class="form-control selectpicker">
-                      <option selected="selected">อาชีพ</option>
-                      <option>ข้าราชการ</option>
-                      <option>พนักงานรัฐวิสาหกิจ</option>
-                      <option>พนักงานบริษัท</option>
-                      <option>เจ้าของกิจการ</option>
-                      <option>อาชีพอิสระ</option>
-                      <option>อืนๆ</option>
-                    </select>
+
+            <div class="panel-group">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h5 class="panel-title">
+                    <a data-toggle="collapse" href="#collapse1">กรอกข้อมูลเพิ่มเติม</a>
+                  </h5>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <div class="form-group">
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-list"></i></span>
+                            <select name="career" class="form-control selectpicker">
+                              <option selected="selected">อาชีพ</option>
+                              <option>ข้าราชการ</option>
+                              <option>พนักงานรัฐวิสาหกิจ</option>
+                              <option>พนักงานบริษัท</option>
+                              <option>เจ้าของกิจการ</option>
+                              <option>อาชีพอิสระ</option>
+                              <option>อืนๆ</option>
+                            </select>
+                          </div>
+                    </div>
+                    <div class="form-group">
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-list"></i></span>
+                            <select name="characterize_career" class="form-control selectpicker">
+                              <option selected="selected">ลักษณะอาชีพ</option>
+                              <option>วิศวกร</option>
+                              <option>แพทย์</option>
+                              <option>พยาบาล</option>
+                              <option>เภสัชกร</option>
+                              <option>พนักงานขาย</option>
+                              <option>สถาปนิก</option>
+                              <option>ครู/อาจารย์</option>
+                              <option>ตำรวจ/ทหาร</option>
+                              <option>ทนายความ</option>
+                              <option>ผู้พิพากษา/อัยการ</option>
+                              <option>อืนๆ</option>
+                            </select>
+                          </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                          <span class="input-group-addon"><i style="font-size:20px" class="fa fa-btc"></i></span>
+                          <input type="text" class="form-control" placeholder="เงินเดือน (บาท)" id="salary" name="salary">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                          <span class="input-group-addon"><i style="font-size:20px" class="fa fa-btc"></i></span>
+                          <input type="text" class="form-control" placeholder=" ผ่อนที่อยู่อาศัยเดือนละ (บาท)" id="mortgage" name="mortgage">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                          <span class="input-group-addon"><i style="font-size:20px" class="fa fa-btc"></i></span>
+                          <input type="text" class="form-control" placeholder="ผ่อนรถเดือนละ (บาท)" id="car_installment" name="car_installment">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                          <span class="input-group-addon"><i style="font-size:20px" class="fa fa-btc"></i></span>
+                          <input type="text" class="form-control" placeholder="ผ่อนบัตรเครดิตเดือนละ (บาท)" id="credit_installment" name="credit_installment">
+                        </div>
+                    </div>
+
                   </div>
-            </div>
-            <div class="form-group">
-                  <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-list"></i></span>
-                    <select name="characterize_career" class="form-control selectpicker">
-                      <option selected="selected">ลักษณะอาชีพ</option>
-                      <option>วิศวกร</option>
-                      <option>แพทย์</option>
-                      <option>พยาบาล</option>
-                      <option>เภสัชกร</option>
-                      <option>พนักงานขาย</option>
-                      <option>สถาปนิก</option>
-                      <option>ครู/อาจารย์</option>
-                      <option>ตำรวจ/ทหาร</option>
-                      <option>ทนายความ</option>
-                      <option>ผู้พิพากษา/อัยการ</option>
-                      <option>อืนๆ</option>
-                    </select>
-                  </div>
-            </div>
-            <div class="form-group">
-                <div class="input-group">
-                  <span class="input-group-addon"><i style="font-size:20px" class="fa fa-btc"></i></span>
-                  <input type="text" class="form-control" placeholder="เงินเดือน (บาท)" id="salary" name="salary">
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="input-group">
-                  <span class="input-group-addon"><i style="font-size:20px" class="fa fa-btc"></i></span>
-                  <input type="text" class="form-control" placeholder=" ผ่อนที่อยู่อาศัยเดือนละ (บาท)" id="mortgage" name="mortgage">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="input-group">
-                  <span class="input-group-addon"><i style="font-size:20px" class="fa fa-btc"></i></span>
-                  <input type="text" class="form-control" placeholder="ผ่อนรถเดือนละ (บาท)" id="car_installment" name="car_installment">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="input-group">
-                  <span class="input-group-addon"><i style="font-size:20px" class="fa fa-btc"></i></span>
-                  <input type="text" class="form-control" placeholder="ผ่อนบัตรเครดิตเดือนละ (บาท)" id="credit_installment" name="credit_installment">
-                </div>
-            </div>
+              </div>
+          </div>
             <input type="submit" id="find_promotion" class="btn center-block" value="ค้าหาโปรโมชั่นเลย">
             {{ Form::close() }}
 
@@ -352,11 +370,6 @@
     <a href="#"><i class="fa fa-skype"></i></a>
   </div>
 </footer>
-
-    {!! Html::script('js/bootstrap.min.js') !!}
-    {!! Html::script('jQuery/jquery-2.2.3.min.js') !!}
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js"></script>
 
     <script>
 
