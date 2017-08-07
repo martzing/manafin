@@ -23,6 +23,21 @@
     {!! Html::script('js/bootstrap.min.js') !!}
 
     <style type="text/css">
+    <style type="text/css">
+
+      @media (min-width: 992px) {
+         #userInformation{
+             margin-left:20%;
+           }
+         }
+      @media (min-width: 768px) {
+        #userInformation{
+            margin-left:15%;
+            }
+        }
+      body {
+        font-family: 'Prompt', serif;
+      }
       .footer {
         background: #f5f5f5;;
         padding: 10px 0;
@@ -48,6 +63,12 @@
   <body>
 
     <!-- Fixed navbar -->
+    <<?php $informationStringArray = array('property' => 'ประเภทสินทรัพย์',
+                                           'property_price' => 'ราคาสินทรัพย์',
+                                           'lend_amount' => 'จำนวนเงินที่กู้',
+                                           'year' => 'จำนวนปีที่กู้',
+                                           'condition' => 'ประกัน MRTA'
+                                          ); ?>
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -88,17 +109,44 @@
     </nav>
 
     <div class="container">
-      <br><br><br><br><br><br><br>
+
+      <br>
+      <br>
+      <br>
+<div class="row">
+<div class="col-lg-5 col-md-6 col-sm-8 col-xs-12">
+<!--panel-->
+<div id="userInformation" style="border-color:#62b29e;" class="panel panel-primary">
+
+    <!-- Default panel contents -->
+    <div style="background-color:#62b29e;border-color:#62b29e;" class="panel-heading"><h4>User Information</h4></div>
+    <div class="panel-body">
+        <!--table-->
+        <table class="table table-condensed">
+              <?php foreach ($allDataArray['userInformation'] as $key => $value): ?>
+                  <tr>
+                    <th>{{ $informationStringArray[$key] }}</th>
+                    <td>{{ $value }}</td>
+                  </tr>
+              <?php endforeach; ?>
+        </table>
+        <!--end of table-->
+    </div>
+    </div>
+  </div>
+  </div>
+
+
       <div>
         <canvas id="myChart" height="400" width="600"></canvas>
       </div>
       <select id="installment" class="form-control selectpicker">
-          <option value="0" selected="selected">ยอดผ่อนต่อเดือน3เดือนแรก</option>
-          <option value="1">ยอดผ่อนต่อเดือน6เดือนแรก</option>
-          <option value="2">ยอดผ่อนต่อเดือน1ปีแรก</option>
-          <option value="3">ยอดผ่อนต่อเดือน2ปีแรก</option>
-          <option value="4">ยอดผ่อนต่อเดือน3ปีแรก</option>
-          <option value="5">ยอดผ่อนต่อเดือนตลอดสัญญา</option>
+          <option value="ยอดผ่อนต่อเดือน3เดือนแรก" selected="selected">ยอดผ่อนต่อเดือน3เดือนแรก</option>
+          <option value="ยอดผ่อนต่อเดือน6เดือนแรก">ยอดผ่อนต่อเดือน6เดือนแรก</option>
+          <option value="ยอดผ่อนต่อเดือน1ปีแรก">ยอดผ่อนต่อเดือน1ปีแรก</option>
+          <option value="ยอดผ่อนต่อเดือน2ปีแรก">ยอดผ่อนต่อเดือน2ปีแรก</option>
+          <option value="ยอดผ่อนต่อเดือน3ปีแรก">ยอดผ่อนต่อเดือน3ปีแรก</option>
+          <option value="ยอดผ่อนต่อเดือนตลอดสัญญา">ยอดผ่อนต่อเดือนตลอดสัญญา</option>
       </select>
     </div> <!-- /container -->
 
@@ -113,7 +161,7 @@
     </footer>
 
 <script>
-  var resultDataJson = {!! json_encode($resultData) !!};
+  var resultDataJson = {!! json_encode($allDataArray['resultData']) !!};
   var resultData = resultDataJson['data'];
 
   //console.log(resultData);
@@ -139,7 +187,7 @@
     data: {
     labels: dataSetJson.labelList,
     datasets: [{
-    label: 'โปรโมชั่น',
+    label: $("#installment").val(),
     data: dataSetJson.dataList,
     backgroundColor: dataSetJson.backgroundColorList
               }]
@@ -164,25 +212,20 @@
 
    $("#installment").change(function(){
 
-    if($("#installment").val() == '0'){
+    if($("#installment").val() == 'ยอดผ่อนต่อเดือน3เดือนแรก'){
       var sortBy = 'month3';
-      var label = 'ยอดผ่อนต่อเดือน3เดือนแรก'
-    }else if($("#installment").val() == '1'){
+    }else if($("#installment").val() == 'ยอดผ่อนต่อเดือน6เดือนแรก'){
       var sortBy = 'month6';
-      var label = 'ยอดผ่อนต่อเดือน6เดือนแรก'
-    }else if($("#installment").val() == '2'){
+    }else if($("#installment").val() == 'ยอดผ่อนต่อเดือน1ปีแรก'){
       var sortBy = 'month12';
-      var label = 'ยอดผ่อนต่อเดือน1ปีแรก'
-    }else if($("#installment").val() == '3'){
+    }else if($("#installment").val() == 'ยอดผ่อนต่อเดือน2ปีแรก'){
       var sortBy = 'month24';
-      var label = 'ยอดผ่อนต่อเดือน2ปีแรก'
-    }else if($("#installment").val() == '4'){
+    }else if($("#installment").val() == 'ยอดผ่อนต่อเดือน3ปีแรก'){
       var sortBy = 'month36';
-      var label = 'ยอดผ่อนต่อเดือน3ปีแรก'
-    }else if($("#installment").val() == '5'){
+    }else if($("#installment").val() == 'ยอดผ่อนต่อเดือนตลอดสัญญา'){
       var sortBy = 'all';
-      var label = 'ยอดผ่อนต่อเดือนตลอดสัญญา'
     }
+    var label = $("#installment").val();
     resultData = bubbleSortJsonData(resultData, sortBy);
     dataSetJson = setDataToDraw(resultData, sortBy, dataLength);
     reDrawChart(myChart, dataSetJson.labelList, dataSetJson.dataList, dataSetJson.backgroundColorList, label);
@@ -211,7 +254,7 @@
     //var dataLength = 0;
 
     for( var i = 0; i<dataLength; i++){
-      bankNameList.push(resultData[i].bank_name);
+      bankNameList.push(resultData[i]['bank_name'].split('ธนาคาร'));
       averagePaymentList.push(parseInt(resultData[i].avg_payment[sortBy]));
       backgroundColorList.push(getBackgroundColorByBankName(resultData[i].bank_name));
     }

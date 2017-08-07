@@ -339,7 +339,7 @@
         <div class="row">
         <div class="col-lg-6 col-md-9 col-sm-12 center-block">
         <div class="embed-responsive embed-responsive-16by9">
-          <iframe src="https://www.youtube.com/embed/4BkUUDPF-Ho?list=RDMM4BkUUDPF-Ho" frameborder="0" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/sBwQ8CLwwNg" frameborder="0" allowfullscreen></iframe>
         </div>
         </div>
         </div>
