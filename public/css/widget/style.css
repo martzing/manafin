@@ -1,0 +1,137 @@
+body {
+  background-color: #ecf0f5;
+}
+
+.title-head {
+  text-align: center;
+  text-decoration: underline;
+}
+
+.margin-body {
+  margin-top: 30px;
+}
+
+/* All Cards */
+.box-widget {
+  box-shadow: 0px 1px 1px rgba(0,0,0,0.1);
+  border-radius: 3px;
+}
+
+/* First Card */
+.profile-head {
+  display: flex;
+  padding: 20px;
+  background-color: #F39C11;
+  border-radius: 3px 3px 0 0;
+}
+
+.image-profile > .image {
+  border-radius: 50%;
+  width: 65px;
+}
+
+.profile-name {
+  width: 100%;
+  margin-left: 20px;
+}
+
+.profile-name > .username {
+  /*font-family: 'Source Sans Pro';*/
+  font-size: 25px;
+  color: white;
+  font-weight: 300;
+  margin: 5px 0;
+}
+
+.profile-name > .role {
+  /*font-family: 'Source Sans Pro';*/
+  font-size: 15px;
+  color: white;
+  margin-top: 0;
+}
+
+.box-footer {
+  border-radius: 0 0 3px 3px;
+}
+
+.nav-stacked > li {
+  border-bottom: 1px solid #f4f4f4;
+  margin: 0 !important;
+  background-color: #fff;
+}
+
+.nav-stacked > li > a  {
+  border-left: 3px solid transparent;
+}
+
+/* Second Card */
+.profile-user-head {
+  border-radius: 3px 3px 0 0;
+  padding: 20px;
+  height: 120px;
+}
+
+.profile-user-head > .username {
+  /*font-family: 'Source Sans Pro';*/
+  font-size: 25px;
+  color: white;
+  font-weight: 300;
+  margin-top: 0;
+  margin-bottom: 5px;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+}
+
+.profile-user-head > .role {
+  /*font-family: 'Source Sans Pro';*/
+  font-size: 15px;
+  color: white;
+  font-weight: 300;
+  margin-top: 0;
+  margin-bottom: 5px;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+}
+
+.image-profile2 {
+  position: absolute;
+  left: 50%;
+  margin-left: -45px;
+  margin-top: -45px;
+}
+
+.image-profile2 > .image {
+  border-radius: 50%;
+  width: 90px;
+  border: 3px solid #fff;
+}
+
+.profile-footer {
+  padding: 45px 10px 10px  10px;
+  background-color: #fff;
+  border-radius: 0 0 3px 3px;
+}
+
+.description-block {
+  text-align: center;
+  margin: 10px 0;
+}
+
+.border-right {
+  border-right: 1px solid #f4f4f4;
+}
+
+.description-block > .header {
+  /*font-family: 'Source Sans Pro';*/
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.description-block > .footer {
+  /*font-family: 'Source Sans Pro';*/
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* Third Card */

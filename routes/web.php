@@ -19,6 +19,9 @@ Route::get('Manafin', 'ManafinController@index');
 Route::get('showdata', 'ManafinController@showData');
 Route::get('testChart', 'ManafinController@testChart');
 Route::post('callWebService', 'ManafinCallWebService@callDataFromWebService');
+Route::get('callReferentData', 'ReferentData@callReferentData');
+Route::get('getAllPromotionData', 'ReferentData@getAllPromotionData');
+
 
 
 /*Route::get('/', function () {

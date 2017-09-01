@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Prompt');
+
+body {
+  font-family: 'Prompt', serif;
+}
+
+.main-header {
+  text-align: center;
+}
+
+.bank-img {
+  width: 50px !important;
+  margin: 0 auto;
+}
+
+.title-header {
+  text-align: center;
+  margin-bottom: 40px;
+  margin-top: 0px;
+}
+
+.carouel-style {
+  background-color: #F8F8F8;
+  padding: 40px;
+}

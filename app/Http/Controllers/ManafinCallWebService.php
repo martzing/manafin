@@ -32,6 +32,10 @@ class ManafinCallWebService extends Controller
         $userInformation['condition'] = intval($req->input('condition'));
         $userInformationStringList['condition'] = $this->setConditionString($req->input('condition'));
       }
+      if(!empty($req->input('career'))){
+        $userInformation['career'] = intval($req->input('career'));
+        $userInformationStringList['career'] = $this->setCareerString($req->input('career'));
+      }
 
       //print_r($userInformation);
       //print_r($userInformationStringList);
@@ -52,13 +56,35 @@ class ManafinCallWebService extends Controller
     }
 
     public function setPropertyString($propertyValue){
-      $propertyArray = array( '1' => 'บ้าน', '2' => 'คอนโด' );
+      $propertyArray = array( '1' => 'บ้านเดี่ยว',
+                              '2' => 'บ้านแฝด',
+                              '3' => 'ทาวน์เฮ้าส์',
+                              '4' => 'ทาวน์โฮม',
+                              '5' => 'ห้องชุดพักอาศัย',
+                              '6' => 'คอนโด',
+                              '7' => 'อาคารพานิชย์',
+                              '8' => 'โฮมออฟฟิศ',
+                              '9' => 'บ้านมือสอง'
+                             );
       return $propertyArray[$propertyValue];
     }
 
     public function setConditionString($conditionValue){
       $conditionArray = array( '1' => 'ทำประกัน MRTA', '2' => 'ไม่ทำประกัน MRTA');
       return $conditionArray[$conditionValue];
+    }
+
+    public function setCareerString($careerValue){
+      $careerArray = array( '1' => 'แพทย์',
+                              '2' => 'สัตวแพทย์',
+                              '3' => 'ทันตแพทย์',
+                              '4' => 'เภสัชกร',
+                              '5' => 'ผู้พิพากษา',
+                              '6' => 'นักบินพานิชย์',
+                              '7' => 'ข้าราชการ',
+                              '8' => 'รัฐวิสาหกิจ'
+                             );
+      return $careerArray[$careerValue];
     }
 
     public function calaulateLendAmount($percentValue, $propertyPrice){

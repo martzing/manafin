@@ -9,76 +9,37 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
-    <link rel="stylesheet"href="https://fonts.googleapis.com/css?family=Prompt">
     <title>Manafin</title>
 
     <!-- Bootstrap core CSS -->
     {!! Html::style('css/bootstrap-grid.css') !!}
     {!! Html::style('css/bootstrap.min.css') !!}
+    {!! Html::style('css/manafin.css') !!}
+    <link rel="stylesheet"href="https://fonts.googleapis.com/css?family=Prompt">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.theme.default.min.css">
+    {!! Html::style('css/bank-carousel.css') !!}
 
     {!! Html::script('jQuery/jquery-3.2.1.js') !!}
     {!! Html::script('js/bootstrap.min.js') !!}
+    {!! Html::script('js/bank-carousel.js') !!}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js"></script>
 
-    <style type="text/css">
-      .footer {
-        background: #f5f5f5;;
-        padding: 10px 0;
-      }
-      .footer a {
-        color: #70726F;
-        font-size: 20px;
-        padding: 10px;
-        transition: all .5s ease;
-      }
-      .footer a:hover {
-        color: white;
-      }
-      body {
-        font-family: 'Prompt', serif;
-      }
-      ::-webkit-input-placeholder {
-        text-align: center;
-      }
-      :-moz-placeholder {
-        /* Firefox 18- */
-        text-align: center;
-      }
-      ::-moz-placeholder {
-        /* Firefox 19+ */
-        text-align: center;
-      }
-      :-ms-input-placeholder {
-        text-align: center;
-      }
-      select, input {
-        text-align: center;
-        text-align-last: center;
-      }
-      #contact-form {
-        background-color:#FFFFFF;
-        padding: 5% 5% 5% 5%;
-        border-style: solid;
-        border-color: #336666;
-        margin-top: 20%;
-        text-align: center;
-      }
-      #find_promotion{
-        color:#ffffff;
-        background-color:#62b29e;
-        width:100%;
-      }
-      #find_promotion:hover {
-        opacity:0.7;
-      }
-      #success_message{ display: none;}
+    <style>
+    body {
+      font-family: 'Prompt', serif;
+      background-color: #f2f2f2;
+    }
 
     </style>
+
   </head>
+
 
   <body>
 
@@ -137,8 +98,15 @@
                     <span class="input-group-addon"><i class="fa fa-list"></i></span>
                     <select name="property" class="form-control selectpicker">
                         <option value="" selected="selected">*ประเภทสินทรัพย์</option>
-                        <option value="1">บ้าน</option>
-                        <option value="2">คอนโด</option>
+                        <option value="1">บ้านเดี่ยว</option>
+                        <option value="2">บ้านแฝด</option>
+                        <option value="3">ทาวน์เฮ้าส์</option>
+                        <option value="4">ทาวน์โฮม</option>
+                        <option value="5">ห้องชุดพักอาศัย</option>
+                        <option value="6">คอนโด</option>
+                        <option value="7">อาคารพานิชย์</option>
+                        <option value="8">โฮมออฟฟิศ</option>
+                        <option value="9">บ้านมือสอง</option>
                     </select>
                   </div>
             </div>
@@ -199,16 +167,19 @@
                             <span class="input-group-addon"><i class="fa fa-list"></i></span>
                             <select name="career" class="form-control selectpicker">
                               <option selected="selected">อาชีพ</option>
-                              <option>ข้าราชการ</option>
-                              <option>พนักงานรัฐวิสาหกิจ</option>
-                              <option>พนักงานบริษัท</option>
-                              <option>เจ้าของกิจการ</option>
-                              <option>อาชีพอิสระ</option>
-                              <option>อืนๆ</option>
+                              <option value="1">แพทย์</option>
+                              <option value="2">สัตวแพทย์</option>
+                              <option value="3">ทันตแพทย์</option>
+                              <option value="4">เภสัชกร</option>
+                              <option value="5">ผู้พิพากษา</option>
+                              <option value="6">นักบินพานิชย์</option>
+                              <option value="7">ข้าราชการ</option>
+                              <option value="8">รัฐวิสาหกิจ</option>
+
                             </select>
                           </div>
                     </div>
-                    <div class="form-group">
+                    <!--div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-list"></i></span>
                             <select name="characterize_career" class="form-control selectpicker">
@@ -226,7 +197,7 @@
                               <option>อืนๆ</option>
                             </select>
                           </div>
-                    </div>
+                    </div-->
                     <div class="form-group">
                         <div class="input-group">
                           <span class="input-group-addon"><i style="font-size:20px" class="fa fa-btc"></i></span>
@@ -360,6 +331,29 @@
 
 
     </div> <!-- /container -->
+
+    <div class="carouel-style">
+    <div class="container">
+      <div class="row">
+        <h3 class="title-header">รวมโปรโมชั่นจากธนาคารชั้นนำ</h3>
+        <div class="owl-carousel">
+            <div><img class="bank-img" src="image/bank_logo/BAY.png" alt=""></div>
+            <div><img class="bank-img" src="image/bank_logo/BBL.png" alt=""></div>
+            <div><img class="bank-img" src="image/bank_logo/CIMB.png" alt=""></div>
+            <div><img class="bank-img" src="image/bank_logo/GH.png" alt=""></div>
+            <div><img class="bank-img" src="image/bank_logo/GSB.png" alt=""></div>
+            <div><img class="bank-img" src="image/bank_logo/KBANK.png" alt=""></div>
+            <div><img class="bank-img" src="image/bank_logo/KK.png" alt=""></div>
+            <div><img class="bank-img" src="image/bank_logo/KTB.png" alt=""></div>
+            <div><img class="bank-img" src="image/bank_logo/LH.png" alt=""></div>
+            <div><img class="bank-img" src="image/bank_logo/SCB.png" alt=""></div>
+            <div><img class="bank-img" src="image/bank_logo/TMB.png" alt=""></div>
+            <div><img class="bank-img" src="image/bank_logo/TNC.png" alt=""></div>
+            <div><img class="bank-img" src="image/bank_logo/UOB.png" alt=""></div>
+          </div>
+      </div>
+    </div>
+  </div>
 
     <footer class="footer">
   <div class="container text-center">
