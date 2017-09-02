@@ -6,13 +6,13 @@ $(document).ready(function(){
     autoplayTimeout: 5000,
     responsive:{
         0:{
-            items:2
+            items:4
         },
         600:{
-            items:3
+            items:5
         },
         1000:{
-            items:7
+            items:8
         }
     }
 });
