@@ -13,8 +13,10 @@
 
     <!-- Bootstrap core CSS -->
     {!! Html::style('css/bootstrap-grid.css') !!}
-    {!! Html::style('css/bootstrap.min.css') !!}
+    {!! Html::style('css/bootstrap-3.3.2.min.css') !!}
     {!! Html::style('css/manafin.css') !!}
+    {!! Html::style('css/select2.min.css') !!}
+    {!! Html::style('css/prettify.css') !!}
     <link rel="stylesheet"href="https://fonts.googleapis.com/css?family=Prompt">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css">
@@ -24,9 +26,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.theme.default.min.css">
     {!! Html::style('css/bank-carousel.css') !!}
 
-    {!! Html::script('jQuery/jquery-3.2.1.js') !!}
-    {!! Html::script('js/bootstrap.min.js') !!}
+    {!! Html::script('jQuery/jquery-2.1.3.min.js') !!}
+    {!! Html::script('js/bootstrap-3.3.2.min.js') !!}
     {!! Html::script('js/bank-carousel.js') !!}
+    {!! Html::script('js/select2.full.js') !!}
+    {!! Html::script('js/prettify.min.js') !!}
+    {!! Html::script('js/anchor.min.js') !!}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js"></script>
 
@@ -34,6 +39,21 @@
     body {
       font-family: 'Prompt', serif;
       background-color: #f2f2f2;
+    }
+    /*select2: fixes word text wrap issues on long select values*/
+    .select2-selection--single {
+      height: 100% !important;
+    }
+    .select2-selection__rendered{
+      word-wrap: break-word !important;
+      text-overflow: inherit !important;
+      white-space: normal !important;
+    }
+    .select2-container.select2-container-multi .select2-choices .select2-search-field:first-child {
+     width: 100% !important;
+    }
+    .select2-default {
+      color: #f00 !important;
     }
 
     </style>
@@ -153,6 +173,7 @@
                     </div>
               </div>
 
+
             <div class="panel-group">
               <div class="panel panel-default">
                 <div class="panel-heading">
@@ -162,6 +183,28 @@
                 </div>
                 <div id="collapse1" class="panel-collapse collapse">
                   <div class="panel-body">
+
+
+                    <div class="form-group">
+                          <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-list"></i></span>
+                            <select name="addCondition[]" id="multiselect" style=" width:100%;" multiple>
+                                <option value="2">กรณีซื้อประกันชีวิตคุ้มครองสินเชื่อ(MATA/MLTA)</option>
+                                <option value="3">กรณีสมัครประกันชีวิตคุ้มครองสินเชื่อ</option>
+                                <option value="4">สมัครบริการหักบัญชีอัตโนมัติสำหรับชำระสินเชื่อบ้าน</option>
+                                <option value="5">สมัครบัตรเดบิตTMB</option>
+                                <option value="6">ปลูกสร้างบ้านกับผู้รับเหมาก่อสร้างที่เป็นสมาชิกสามัญและสมาชิกวิสามัญประเภท ก. ของ ทำเนียบสมาคมธุรกิจรับสร้างบ้าน</option>
+                                <option value="7">ปลูกสร้างบ้านกับผู้รับเหมาก่อสร้างทั่วไป หรือ ผู้รับเหมาก่อสร้างที่เป็นสมาชิกวิสามัญประเภท ข.</option>
+                                <option value="8">ฟรีค่าจดจำนอง</option>
+                                <option value="9">กรณีทำประกันชีวิต</option>
+                                <option value="10">กรณีซื้อประกัน ทุนประกันต่ำกว่า 70%</option>
+                                <option value="11">กรณีซื้อประกัน ทุนประกันต่ำกว่า 100%</option>
+                                <option value="12">ทำ MRTA/GLT SP ไม่ต่ำกว่ำ 10 ปี และอัคคีภัยไม่ต่ำกว่ำ 5 ปี</option>
+                            </select>
+                          </div>
+                      </div>
+
+
                     <div class="form-group">
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-list"></i></span>
@@ -369,6 +412,12 @@
 
     $(document).ready(function() {
 
+      $('#multiselect').select2({
+                                tags: true,
+                                tokenSeparators: [',', ' '],
+                                placeholder: "กรุณาเลือกเงื่อนไขเพิ่มเติม"
+                                });
+      $('.select2-search__field').css({"width":"100%"});
       // set text value in lend_percent option on page refresh
       var oneHundredPercent = (parseInt($("#property_price").val())*1).toString();
       var ninetyPercent = (parseInt($("#property_price").val())*0.9).toString();
@@ -469,8 +518,6 @@
 
       //end validation input data
 });
-
-
 
     </script>
 

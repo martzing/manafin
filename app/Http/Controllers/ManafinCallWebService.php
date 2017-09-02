@@ -12,6 +12,7 @@ class ManafinCallWebService extends Controller
 
       $userInformation = array();
       $userInformationStringList = array();
+      $userInformation['condition'] = array();
       if(!empty($req->input('property'))){
         $userInformation['property'] = intval($req->input('property'));
         $userInformationStringList['property'] = $this->setPropertyString($req->input('property'));
@@ -28,8 +29,8 @@ class ManafinCallWebService extends Controller
         $userInformation['year'] = intval($req->input('year'));
         $userInformationStringList['year'] = $req->input('year');
       }
-      if(!empty($req->input('condition'))){
-        $userInformation['condition'] = intval($req->input('condition'));
+      if($req->input('condition') == "1"){
+        array_push( $userInformation['condition'], intval($req->input('condition')));
         $userInformationStringList['condition'] = $this->setConditionString($req->input('condition'));
       }
       if($req->input('career') != "อาชีพ"){
@@ -37,6 +38,13 @@ class ManafinCallWebService extends Controller
         $userInformationStringList['career'] = $this->setCareerString($req->input('career'));
       }
 
+      if($req->input('addCondition') != null){
+        foreach ($req->input('addCondition') as $value) {
+          array_push( $userInformation['condition'],  intval($value));
+        }
+      }
+
+      //dd($userInformation['condition']);
       //print_r($userInformation);
       //print_r($userInformationStringList);
 
