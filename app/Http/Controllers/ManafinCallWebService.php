@@ -32,7 +32,7 @@ class ManafinCallWebService extends Controller
         $userInformation['condition'] = intval($req->input('condition'));
         $userInformationStringList['condition'] = $this->setConditionString($req->input('condition'));
       }
-      if(!empty($req->input('career'))){
+      if($req->input('career') != "อาชีพ"){
         $userInformation['career'] = intval($req->input('career'));
         $userInformationStringList['career'] = $this->setCareerString($req->input('career'));
       }
